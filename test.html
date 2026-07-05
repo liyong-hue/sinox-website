@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Test Filter</title>
+<style>
+body{font-family:Arial;padding:20px}
+.btns{margin-bottom:20px}
+.btns button{padding:10px 20px;margin:4px;border:2px solid #ddd;border-radius:6px;font-size:15px;cursor:pointer;background:#f5f5f5}
+.btns button.active{background:#B29354;color:#fff;border-color:#B29354}
+.grid{display:flex;flex-wrap:wrap;gap:16px}
+.card{width:200px;padding:16px;border:1px solid #ddd;border-radius:8px;text-align:center}
+.card img{width:100%;height:120px;object-fit:cover;border-radius:4px}
+</style></head><body>
+
+<h2>Product Filter Test</h2>
+<div class="btns" id="btnBar">
+<button class="active" data-f="all">All</button>
+<button data-f="ram">RAM</button>
+<button data-f="ddr5">DDR5</button>
+<button data-f="ddr4">DDR4</button>
+<button data-f="ssd">SSD</button>
+<button data-f="nvme">NVMe</button>
+<button data-f="sata">SATA</button>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<script>
+var data = [
+{cat:"ram ddr4", img:"images/05db3b200902762cc7ba76b70c63bfac.webp", name:"DDR4 16GB"},
+{cat:"ram ddr4", img:"images/ee8bd3414142137ca49054f08c4879cd.webp", name:"DDR4 32GB"},
+{cat:"ram ddr5", img:"images/839d73de39b509fd9a2cdc18cd332817.webp", name:"DDR5 32GB"},
+{cat:"ram ddr5", img:"images/d439637a69b2502224ed11e070b82684.webp", name:"DDR5 64GB"},
+{cat:"ssd nvme", img:"images/0f2e4c827292cdfa606502e579f74c51.webp", name:"NVMe 1TB"},
+{cat:"ssd nvme", img:"images/e5ce03a735c2944fc48369d678c0c215.webp", name:"NVMe 2TB"},
+{cat:"ssd nvme", img:"images/nvme-4t-v1.webp", name:"NVMe 4TB"},
+{cat:"ssd sata", img:"images/1afae01d5cf53aa23deb7264be8131fa.webp", name:"SATA 1TB"},
+{cat:"ssd sata", img:"images/f92c27d9f527534160a6da7b6134abe8.webp", name:"SATA 2TB"},
+];
+
+function render(f){
+f = f || 'all';
+document.querySelectorAll('#btnBar button').forEach(b=>b.classList.toggle('active', b.dataset.f===f));
+var g = document.getElementById('grid');
+g.innerHTML = '';
+data.forEach(function(d){
+  var cats = d.cat.split(' ');
+  if(f!=='all' && cats.indexOf(f)===-1) return;
+  var div = document.createElement('div');
+  div.className = 'card';
+  div.innerHTML = '<img src="'+d.img+'"><p>'+d.name+'</p><small>'+d.cat+'</small>';
+  g.appendChild(div);
+});
+}
+
+document.querySelectorAll('#btnBar button').forEach(function(b){
+b.onclick = function(){ render(this.dataset.f); };
+});
+
+render('all');
+</script>
+</body></html>

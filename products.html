@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title data-en="SINOX - Products" data-zh="SINOX - 浜у搧">SINOX - Products</title>
+<meta name="description" content="SINOX product catalog - DDR4/DDR5 RAM, NVMe/SATA SSDs for desktop, laptop, and server applications.">
+<meta name="theme-color" content="#00b341">
+<meta name="author" content="SINOX Technology Co., Ltd.">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Rajdhani","Microsoft YaHei","PingFang SC",sans-serif;font-size:15px;color:#1a1a1a;background:#f7f9fa;line-height:1.6}
+a{text-decoration:none;color:inherit}ul,ol{list-style:none}img{max-width:100%;display:block}
+
+/* Header */
+header{position:fixed;top:0;left:0;width:100%;height:72px;background:#fff;z-index:1000;display:flex;align-items:center;padding:0 24px;border-bottom:1px solid #eee}
+.header-inner{width:100%;max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:28px;font-weight:800;letter-spacing:.06em;color:#c5a028}.logo span{color:#c5a028}
+.main-nav{display:flex;gap:4px}
+.nav-link{padding:24px 14px;font-size:14px;color:#555;font-weight:500;transition:color .2s;text-transform:uppercase;letter-spacing:.04em}
+.nav-link:hover{color:#000}
+.nav-link.active{color:#00b341;font-weight:700}
+.header-right{display:flex;align-items:center;gap:16px;font-size:13px;color:#888}
+.header-right a{color:#888}.header-right a:hover{color:#000}
+
+/* Lang Switcher */
+.lang-switcher{display:flex;gap:0;border:1px solid #ddd;border-radius:4px;overflow:hidden}
+.lang-btn{padding:5px 10px;font-size:11px;cursor:pointer;background:#fff;color:#888;border:none;font-weight:600;transition:all .2s;letter-spacing:.02em}
+.lang-btn.active,.lang-btn:hover{color:#111}
+.lang-btn.active{background:#00b341!important;color:#fff!important}
+.lang-btn:hover:not(.active){background:#f5f5f5}
+
+/* Chaty Float */
+.chaty-float{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.chaty-main{width:56px;height:56px;border-radius:50%;background:#00b341;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:26px;box-shadow:0 4px 16px rgba(0,179,65,.4);transition:transform .35s,background .35s;border:none;line-height:1;position:relative;z-index:2}
+.chaty-main:hover{transform:scale(1.08);box-shadow:0 6px 22px rgba(0,179,65,.5)}
+.chaty-main.open{transform:rotate(135deg);background:#e03030;box-shadow:0 4px 16px rgba(224,48,48,.4)}
+.chaty-sub{display:flex;flex-direction:column-reverse;gap:12px;max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1),opacity .35s ease,margin .4s;opacity:0;margin-bottom:0;align-items:flex-end}
+.chaty-sub.show{max-height:220px;opacity:1;margin-bottom:4px}
+.chaty-btn{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);transition:transform .2s,box-shadow .2s;text-decoration:none;position:relative;flex-shrink:0}
+.chaty-btn:hover{transform:scale(1.12);box-shadow:0 6px 20px rgba(0,0,0,.28)}
+.chaty-btn .chaty-tip{position:absolute;right:60px;background:#333;color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .25s;font-weight:500;letter-spacing:.03em}
+.chaty-btn:hover .chaty-tip{opacity:1}
+.chaty-wa{background:#25d366}.chaty-wa:hover{background:#1ebc59}
+.chaty-email{background:#0077b5}.chaty-email:hover{background:#006699}
+.chaty-phone{background:#555}.chaty-phone:hover{background:#444}
+
+/* ===== Product Grid - MACROWAY Style ===== */
+.product-grid-macroway{display:flex;flex-wrap:wrap;gap:16px}
+.product-grid-macroway .product-card{flex:0 0 240px;width:240px;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:transform .3s,box-shadow .3s;cursor:pointer}
+.product-grid-macroway .product-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.product-grid-macroway .product-card-img{width:240px;height:240px;overflow:hidden;background:#f5f5f5;display:flex;align-items:center;justify-content:center}
+.product-grid-macroway .product-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.product-grid-macroway .product-card:hover .product-card-img img{transform:scale(1.05)}
+.product-grid-macroway .product-card-body{padding:14px}
+.product-grid-macroway .product-card-name{font-size:14px;font-weight:700;color:#333;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:8px}
+.product-grid-macroway .product-card-price{font-size:18px;font-weight:700;color:#B29354;margin-bottom:8px}
+.product-grid-macroway .product-card-moq{font-size:12px;color:#999}
+.product-grid-macroway .product-card-flag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:3px;background:#eee;color:#999;margin-left:8px;vertical-align:middle}
+
+/* Breadcrumb */
+.breadcrumb{max-width:1320px;margin:0 auto;padding:16px 20px 0;font-size:13px;color:#888}
+.breadcrumb a{color:#888;transition:color .2s}
+.breadcrumb a:hover{color:#00b341}
+.breadcrumb span{color:#333;font-weight:600}
+
+/* Page Title */
+.page-title-section{max-width:1320px;margin:0 auto;padding:20px 20px 8px}
+.page-title{font-size:30px;font-weight:700;color:#111;text-transform:uppercase;letter-spacing:.04em}
+.page-subtitle{font-size:15px;color:#888;margin-top:6px}
+
+/* Toolbar */
+.toolbar{max-width:1320px;margin:0 auto;padding:12px 20px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.toolbar-left{display:flex;gap:8px;flex-wrap:wrap}
+.toolbar-right{display:flex;gap:12px;align-items:center}
+
+.cat-btn{display:inline-block;padding:10px 20px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-weight:600;color:#444;background:#fff;cursor:pointer;text-align:center;transition:all .2s;letter-spacing:.04em}
+.cat-btn:hover{background:#f5f5f5;border-color:#B29354;color:#B29354}
+.cat-btn.active{background:#B29354;color:#fff;border-color:#B29354;box-shadow:0 2px 8px rgba(178,147,84,.3)}
+
+.sort-select{padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-size:14px;color:#555;background:#fff;cursor:pointer;outline:none;font-family:inherit}
+.sort-select:focus{border-color:#B29354}
+.page-size-select{padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-size:14px;color:#555;background:#fff;cursor:pointer;outline:none;font-family:inherit}
+
+/* Products Container */
+.products-container{max-width:1320px;margin:0 auto;padding:0 20px 60px}
+
+/* Product card hidden state */
+.product-card.hidden{display:none!important}
+
+/* Footer */
+footer{background:#0a0a0a;color:#aaa}
+.footer-main{max-width:1320px;margin:0 auto;padding:56px 20px 36px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+.footer-col h4{font-size:14px;color:#fff;margin-bottom:16px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.footer-col p{font-size:13px;color:#888;line-height:1.8}
+.footer-col li{margin-bottom:8px}
+.footer-col a{font-size:13px;color:#888;transition:color .2s}
+.footer-col a:hover{color:#00b341}
+.social-links{display:flex;gap:12px;margin-top:12px}
+.social-links a{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#222;color:#aaa;font-size:14px;transition:all .2s}
+.social-links a:hover{background:#00b341;color:#fff}
+.footer-bottom{text-align:center;padding:20px;border-top:1px solid #1a1a1a;font-size:12px;color:#555}
+.footer-bottom a{color:#888;margin:0 8px}
+.footer-bottom a:hover{color:#fff}
+
+/* Brand Header - Left+Right Layout */
+.brand-header{position:relative;width:100%;margin-top:72px;overflow:hidden;min-height:460px;display:flex;align-items:center;justify-content:center}
+.brand-header .brand-bg{position:absolute;inset:0;background:url('images/factory-bg.jpg') center/cover no-repeat;z-index:0}
+.brand-header .brand-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.5);z-index:1}
+.brand-inner{position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;padding:40px 40px;display:flex;justify-content:space-between;align-items:flex-start}
+
+/* Left zone */
+.brand-left{flex:1;text-align:left;padding-top:0}
+.brand-logo-row{display:flex;align-items:center;justify-content:flex-start;gap:14px}
+.brand-logo-icon{width:56px;height:56px;flex-shrink:0}
+.brand-logo-text{font-size:72px;font-weight:800;color:#c5a028;letter-spacing:2px;line-height:1}
+.brand-tagline{font-size:22px;color:#FFFFFF;font-weight:700;text-transform:uppercase;line-height:1.3;margin-top:8px}
+.brand-subtitle{font-size:16px;color:rgba(255,255,255,0.5);font-weight:400;line-height:1.3;margin-top:4px}
+
+/* Right zone */
+.brand-metrics{display:flex;flex-direction:column;gap:6px;flex-shrink:0}
+.brand-metric-row{display:flex;align-items:baseline;gap:8px;line-height:1.4}
+.brand-stat-num{font-size:32px;font-weight:700;color:#00b341;line-height:1.1}
+.brand-stat-label{font-size:16px;color:#FFFFFF;font-weight:400}
+.brand-contact-line{font-size:14px;color:#FFFFFF;text-decoration:none;display:block;line-height:1.6}
+.brand-contact-line:hover{color:#00b341}
+.brand-metrics .brand-contact-sep{margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.12)}
+
+/* Bottom cert bar */
+.brand-certs-bar{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;z-index:3;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:24px;padding:10px 24px}
+.brand-cert-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+.brand-cert-item img{width:28px;height:28px;display:block}
+.brand-cert-label{font-size:9px;color:rgba(255,255,255,0.65);font-weight:500;letter-spacing:.04em;text-align:center}
+
+/* Footer Social Icons (SVG) */
+.footer-social-svg{display:flex;flex-direction:row;gap:24px;justify-content:center;align-items:center;margin:20px 0 12px}
+.footer-social-svg a{display:block;width:28px;height:28px;transition:all .2s;opacity:0.55}
+.footer-social-svg a:hover{opacity:1}
+.footer-social-svg svg{width:28px;height:28px;fill:#aaa}
+.footer-social-svg a:hover svg{fill:#B29354}
+
+@media(max-width:768px){
+  .main-nav{display:none}
+  .brand-header{min-height:auto}
+  .brand-inner{flex-direction:column;align-items:center;padding:22px 16px;gap:24px}
+  .brand-left{text-align:center}
+  .brand-logo-row{justify-content:center}
+  .brand-logo-icon{width:44px;height:44px}
+  .brand-logo-text{font-size:44px;letter-spacing:1px}
+  .brand-tagline{font-size:17px}
+  .brand-subtitle{font-size:13px}
+  .brand-stat-num{font-size:26px}
+  .brand-stat-label{font-size:13px}
+  .brand-contact-line{font-size:12px}
+  .brand-metrics{flex-direction:row;flex-wrap:wrap;gap:4px;justify-content:center;width:100%}
+  .brand-certs-bar{bottom:10px;gap:12px;padding:6px 14px}
+  .brand-cert-item img{width:24px;height:24px}
+  .brand-cert-label{font-size:8px}
+  .toolbar{flex-direction:column;align-items:flex-start}
+  .footer-main{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="header-inner">
+<a href="index.html" class="logo">SIN<span>OX</span></a>
+<nav class="main-nav">
+<a href="index.html" class="nav-link" data-en="Home" data-zh="棣栭〉">Home</a>
+<a href="products.html" class="nav-link active" data-en="Products" data-zh="浜у搧">Products</a>
+<a href="about.html" class="nav-link" data-en="About us" data-zh="鍏充簬鎴戜滑">About us</a>
+<a href="news.html" class="nav-link" data-en="News" data-zh="鏂伴椈">News</a>
+<a href="video.html" class="nav-link" data-en="Video" data-zh="瑙嗛">Video</a>
+<a href="contact.html" class="nav-link" data-en="Contacts" data-zh="鑱旂郴鎴戜滑">Contacts</a>
+</nav>
+<div class="header-right">
+<div class="lang-switcher">
+<button class="lang-btn active" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="zh">涓枃</button>
+<button class="lang-btn" data-lang="ja">鏃ユ湰瑾?/button>
+<button class="lang-btn" data-lang="ko">頃滉淡鞏?/button>
+<button class="lang-btn" data-lang="es">Espa帽ol</button>
+<button class="lang-btn" data-lang="ru">袪褍褋褋泻懈泄</button>
+<button class="lang-btn" data-lang="pt">Portugu锚s</button>
+<button class="lang-btn" data-lang="fr">Fran莽ais</button>
+<button class="lang-btn" data-lang="de">Deutsch</button>
+<button class="lang-btn" data-lang="ar">丕賱毓乇亘賷丞</button>
+</div>
+<a href="#" data-en="Login" data-zh="鐧诲綍">鐧诲綍</a>
+</div>
+</div>
+</header>
+
+<!-- Brand Header -->
+<section class="brand-header">
+<div class="brand-bg"></div>
+<div class="brand-overlay"></div>
+<div class="brand-inner">
+
+<div class="brand-left">
+
+<div class="brand-logo-row">
+<svg class="brand-logo-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#c5a028"/>
+<stop offset="100%" stop-color="#e8c84a"/>
+</linearGradient>
+</defs>
+<rect x="8" y="18" width="30" height="30" rx="3" transform="rotate(45 23 33)" fill="url(#goldGrad)"/>
+<rect x="24" y="14" width="30" height="30" rx="3" transform="rotate(45 39 29)" fill="url(#goldGrad)" opacity="0.7"/>
+<line x1="8" y1="50" x2="56" y2="14" stroke="#e8c84a" stroke-width="2" opacity="0.5"/>
+</svg>
+<div class="brand-logo-text">SINOX</div>
+</div>
+
+<div class="brand-tagline" data-en="Source Factory" data-zh="婧愬ご宸ュ巶">Source Factory</div>
+<div class="brand-subtitle" data-en="Professional RAM &amp; SSD Manufacturer" data-zh="涓撲笟鍐呭瓨涓庡浐鎬佺‖鐩樺埗閫犲晢">Professional RAM &amp; SSD Manufacturer</div>
+
+</div>
+
+<div class="brand-metrics">
+
+<div class="brand-metric-row"><span class="brand-stat-num">12+</span> <span class="brand-stat-label" data-en="Years Experience" data-zh="骞磋涓氱粡楠?>Years Experience</span></div>
+<div class="brand-metric-row"><span class="brand-stat-num">50+</span> <span class="brand-stat-label" data-en="Engineers Team" data-zh="宸ョ▼甯堝洟闃?>Engineers Team</span></div>
+<div class="brand-metric-row"><span class="brand-stat-num">1000+</span> <span class="brand-stat-label" data-en="m&sup2; Factory" data-zh="m&sup2; 宸ュ巶">m&sup2; Factory</span></div>
+<div class="brand-metric-row"><span class="brand-stat-num">50+</span> <span class="brand-stat-label" data-en="Countries" data-zh="鍥藉">Countries</span></div>
+
+<div class="brand-contact-sep"></div>
+
+<a class="brand-contact-line" href="https://wa.me/8618221761750" target="_blank">WhatsApp: +86 18221717650</a>
+<a class="brand-contact-line" href="mailto:18221717650@163.com">Email: 18221717650@163.com</a>
+<a class="brand-contact-line" href="tel:+8618221761750">Phone: +86 18221717650</a>
+
+</div>
+
+</div>
+
+<div class="brand-certs-bar">
+<div class="brand-cert-item"><img src="images/cert-fcc.webp" alt="FCC"><span class="brand-cert-label">FCC</span></div>
+<div class="brand-cert-item"><img src="images/cert-ce.webp" alt="CE"><span class="brand-cert-label">CE</span></div>
+<div class="brand-cert-item"><img src="images/cert-rohs.webp" alt="RoHS"><span class="brand-cert-label">RoHS</span></div>
+<div class="brand-cert-item"><img src="images/cert-iso.webp" alt="ISO"><span class="brand-cert-label">ISO</span></div>
+</div>
+</section>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+<a href="index.html" data-en="Home" data-zh="棣栭〉">Home</a> &gt; <span data-en="Products" data-zh="浜у搧">Products</span>
+</div>
+
+<!-- Page Title -->
+<div class="page-title-section">
+<h1 class="page-title" data-en="Our Products" data-zh="鎴戜滑鐨勪骇鍝?>Our Products</h1>
+<p class="page-subtitle" data-en="Browse our complete range of DDR4/DDR5 RAM modules and NVMe/SATA SSDs." data-zh="娴忚鎴戜滑瀹屾暣鐨?DDR4/DDR5 鍐呭瓨妯＄粍涓?NVMe/SATA 鍥烘�佺‖鐩樹骇鍝佺嚎銆?>Browse our complete range of DDR4/DDR5 RAM modules and NVMe/SATA SSDs.</p>
+</div>
+
+<!-- Toolbar -->
+<div class="toolbar">
+<div class="toolbar-left" id="filterBtns">
+<button class="cat-btn active" data-f="all" data-en="All" data-zh="鍏ㄩ儴">All</button>
+<button class="cat-btn" data-f="ddr4">DDR4</button>
+<button class="cat-btn" data-f="ddr5">DDR5</button>
+<button class="cat-btn" data-f="nvme">NVMe</button>
+<button class="cat-btn" data-f="sata">SATA</button>
+</div>
+<div class="toolbar-right">
+<select class="sort-select" id="sortSelect">
+<option value="default" data-en="Default" data-zh="榛樿鎺掑簭">Default</option>
+<option value="price-asc" data-en="Price: Low to High" data-zh="浠锋牸: 浠庝綆鍒伴珮">Price: Low to High</option>
+<option value="price-desc" data-en="Price: High to Low" data-zh="浠锋牸: 浠庨珮鍒颁綆">Price: High to Low</option>
+</select>
+<select class="page-size-select" id="pageSizeSelect">
+<option value="12" data-en="12 / page" data-zh="12 浠?椤?>12 / page</option>
+<option value="24" data-en="24 / page" data-zh="24 浠?椤?>24 / page</option>
+<option value="all" data-en="All" data-zh="鍏ㄩ儴">All</option>
+</select>
+</div>
+</div>
+
+<!-- Products Grid -->
+<div class="products-container">
+<div class="product-grid-macroway" id="productGrid">
+
+<!-- DDR4 Desktop NEW -->
+<article class="product-card" data-cat="ram ddr4" data-price="1199" style="position:relative">
+<a href="product.html?id=ddr4-desktop" style="display:block;color:inherit;text-decoration:none">
+<div class="product-card-img"><img src="images/ddr4-desk-1.webp" alt=""></div>
+<div class="product-card-body">
+<p class="product-card-name">SINOX DDR4 8GB/16GB/32GB 3200MHz Gaming RAM</p>
+<p class="product-card-price">楼299 鈥?楼1,199</p>
+<p class="product-card-moq" data-en="NEW 路 Black Heatsink 路 XMP 2.0" data-zh="鏂板搧 路 榛戣壊鏁ｇ儹椹敳 路 XMP 2.0">NEW 路 Black Heatsink 路 XMP 2.0</p>
+</div></a>
+</article>
+
+<!-- DDR4 Desktop Std NEW -->
+<article class="product-card" data-cat="ram ddr4" data-price="899">
+<a href="product.html?id=ddr4-desktop-std" style="display:block;color:inherit;text-decoration:none">
+<div class="product-card-img"><img src="images/ddr4-std-g1.webp" alt=""></div>
+<div class="product-card-body">
+<p class="product-card-name">SINOX DDR4 8GB/16GB/32GB 2666MHz~3600MHz Desktop RAM</p>
+<p class="product-card-price">楼199 鈥?楼899</p>
+<p class="product-card-moq" data-en="NEW 路 DDR4 路 1.2V Low Power" data-zh="鏂板搧 路 DDR4 路 1.2V浣庡姛鑰?>NEW 路 DDR4 路 1.2V Low Power</p>
+</div></a>
+</article>
+
+<!-- DDR4 16GB -->
+<article class="product-card" data-cat="ram ddr4" data-price="599">
+<a href="product.html?id=ddr4-16g" style="display:block;color:inherit;text-decoration:none">
+<div class="product-card-img"><img src="images/05db3b200902762cc7ba76b70c63bfac.webp" alt=""></div>
+<div class="product-card-body">
+<p class="product-card-name">SINOX DDR4 16GB (8GBx2) 3200MHz</p>
+<p class="product-card-price">楼599</p>
+<p class="product-card-moq" data-en="MOQ: 1 Piece 路 328 viewed" data-zh="璧疯閲? 1 浠?路 328 娆℃祻瑙?>MOQ: 1 Piece 路 328 viewed</p>
+</div></a>
+</article>
+
+<!-- DDR4 32GB -->
+<article class="product-card" data-cat="ram ddr4" data-price="1259">
+<a href="product.html?id=ddr4-32g" style="display:block;color:inherit;text-decoration:none">
+<div class="product-card-img"><img src="images/ee8bd3414142137ca49054f08c4879cd.webp" alt=""></div>
+<div class="product-card-body">
+<p class="product-card-name">SINOX DDR4 32GB (16GBx2) 3200MHz</p>
+<p class="product-card-price">楼1,259</p>
+<p class="product-card-moq" data-en="MOQ: 1 Piece 路 195 viewed" data-zh="璧疯閲? 1 浠?路 195 娆℃祻瑙?>MOQ: 1 Piece 路 195 viewed</p>
+</div></a>
+</article>
+
+<!-- DDR5 32GB -->
+<article class="product-card" data-cat="ram ddr5" data-price="3559">
+<a href="product.html?id=ddr5-32g" style="display:block;color:inherit;text-decoration:none">
+<div class="product-card-img"><img src="images/839d73de39b509fd9a2cdc18cd332817.webp" alt=""></div>
+<div class="product-card-body">
+<p class="product-card-name">SINOX DDR5 32GB (16GBx2) 5600MHz</p>
+<p class="product-card-price">楼3,559</p>
+<p class="product-card-moq" data-en="MOQ: 1 Piece 路 287 viewed" data-zh="璧疯閲? 1 浠?路 287 娆℃祻瑙?>MOQ: 1 Piece 路 287 viewed</p>
+</div></a>
+</article>
+
+<!-- DDR5 64GB -->
+<article class="product-card" data-cat="ram ddr5" data-price="6299">
+<a href="product.html?id=ddr5-64g" style="display:block;color:inherit;text-decoration:none">
+<div class="product-card-img"><img src="images/d439637a69b2502224ed11e070b82684.webp" alt=""></div>
+<div class="product-card-body">
+<p class="product-card-name">SINOX DDR5 64GB (32GBx2) 5600MHz</p>
+<p class="product-card-price">楼6,299</p>
+<p class="product-card-moq" data-en="MOQ: 1 Piece 路 256 viewed" data-zh="璧疯閲? 1 浠?路 256 娆℃祻瑙?>MOQ: 1 Piece 路 256 viewed</p>
+</div></a>
+</article>
+
+<!-- DDR5 Gaming -->
+<article class="product-card" data-cat="ram ddr5" data-price="360">
+<a href="product.html?id=ddr5-gaming" style="display:block;color:inherit;text-decoration:none">
+<div class="product-card-img"><img src="images/ddr5-g1.webp" alt=""></div>
+<div class="product-card-body">
+<p class="product-card-name">SINOX DDR5 8GB/16GB/32GB 6000MHz Gaming RAM</p>
+<p class="product-card-price">楼210 鈥?楼360</p>
+<p class="product-card-moq" data-en="NEW 路 DDR5 路 6000MHz 路 XMP 3.0" data-zh="鏂板搧 路 DDR5 路 6000MHz 路 XMP 3.0" data-ja="鏂拌＝鍝?路 DDR5 路 6000MHz" data-ko="鞁犾牅頀?路 DDR5 路 6000MHz" data-es="NUEVO 路 DDR5 路 6000MHz" data-ru="袧袨袙袠袧袣袗 路 DDR5 路 6000MHz" data-pt="NOVO 路 DDR5 路 6000MHz" data-fr="NOUVEAU 路 DDR5 路 6000MHz" data-de="NEU 路 DDR5 路 6000MHz" data-ar="噩丿賷丿 路 DDR5 路 6000MHz">NEW 路 DDR5 路 6000MHz 路 XMP 3.0</p>
+</div></a>
+</article>
+
+<!-- DDR4 Laptop -->
+<article class="product-card" data-cat="ram ddr4" data-price="799">
+<a href="product.html?id=ddr4-laptop" style="display:block;color:inherit;text-decoration:none">
+<div class="product-card-img"><img src="images/ddr4-lp-g1.webp" alt=""></div>
+<div class="product-card-body">
+<p class="product-card-name">SINOX DDR4 8GB/16GB/32GB 2666MHz/3200MHz Laptop RAM</p>
+<p class="product-card-price">楼199 鈥?楼799</p>
+<p class="product-card-moq" data-en="NEW 路 DDR4 路 1.2V 路 SODIMM 路 260-Pin" data-zh="鏂板搧 路 DDR4 路 1.2V 路 SODIMM 路 260閽? data-ja="鏂拌＝鍝?路 DDR4 路 SODIMM" data-ko="鞁犾牅頀?路 DDR4 路 SODIMM" data-es="NUEVO 路 DDR4 路 SODIMM" data-ru="袧袨袙袠袧袣袗 路 DDR4 路 SODIMM" data-pt="NOVO 路 DDR4 路 SODIMM" data-fr="NOUVEAU 路 DDR4 路 SODIMM" data-de="NEU 路 DDR4 路 SODIMM" data-ar="噩丿賷丿 路 DDR4 路 SODIMM">NEW 路 DDR4 路 1.2V 路 SODIMM 路 260-Pin</p>
+</div></a>
+</article>
+
+<!-- DDR5 Black Armor -->
+<article class="product-card" data-cat="ram ddr5" data-price="459">
+<a href="product.html?id=ddr5-blackarmor" style="display:block;color:inherit;text-decoration:none">
+<div class="product-card-img"><img src="images/ddr5-ba-g1.webp" alt=""></div>
+<div class="product-card-body">
+<p class="product-card-name">SINOX DDR5 8GB/16GB/32GB 4800-6000MHz Black Armor RAM</p>
+<p class="product-card-price">楼249 鈥?楼459</p>
+<p class="product-card-moq" data-en="NEW 路 DDR5 路 Black Armor 路 XMP 3.0 路 EXPO" data-zh="鏂板搧 路 DDR5 路 Black Armor 路 XMP 3.0 路 EXPO" data-ja="鏂拌＝鍝?路 DDR5 路 Black Armor" data-ko="鞁犾牅頀?路 DDR5 路 Black Armor" data-es="NUEVO 路 DDR5 路 Black Armor" data-ru="袧袨袙袠袧袣袗 路 DDR5 路 Black Armor" data-pt="NOVO 路 DDR5 路 Black Armor" data-fr="NOUVEAU 路 DDR5 路 Black Armor" data-de="NEU 路 DDR5 路 Black Armor" data-ar="噩丿賷丿 路 DDR5 路 Black Armor">NEW 路 DDR5 路 Black Armor 路 XMP 3.0 路 EXPO</p>
+</div></a>
+</article>
+
+<!-- NVMe New -->
+<article class="product-card" data-cat="ssd nvme" data-price="1299">
+<a href="product.html?id=nvme-new" style="display:block;color:inherit;text-decoration:none">
+<div class="product-card-img"><img src="images/nvme-n1-g1.webp" alt=""></div>
+<div class="product-card-body">
+<p class="product-card-name">SINOX M.2 NVMe PCIe 4.0 SSD 128GB鈥?TB</p>
+<p class="product-card-price">楼199 鈥?楼1,299</p>
+<p class="product-card-moq" data-en="NEW 路 PCIe 4.0 路 7000+MB/s 路 Gold/Silver/Black" data-zh="鏂板搧 路 PCIe 4.0 路 7000+MB/s 路 閲?閾?榛? data-ja="鏂拌＝鍝?路 PCIe 4.0 路 7000+MB/s" data-ko="鞁犾牅頀?路 PCIe 4.0 路 7000+MB/s" data-es="NUEVO 路 PCIe 4.0 路 7000+MB/s" data-ru="袧袨袙袠袧袣袗 路 PCIe 4.0 路 7000+MB/s" data-pt="NOVO 路 PCIe 4.0 路 7000+MB/s" data-fr="NOUVEAU 路 PCIe 4.0 路 7000+MB/s" data-de="NEU 路 PCIe 4.0 路 7000+MB/s" data-ar="噩丿賷丿 路 PCIe 4.0 路 7000+MB/s">NEW 路 PCIe 4.0 路 7000+MB/s 路 Gold/Silver/Black</p>
+</div></a>
+</article>
+<!-- SATA SSD New -->
+<article class="product-card" data-cat="ssd sata" data-price="699">
+<a href="product.html?id=sata-ssd" style="display:block;color:inherit;text-decoration:none">
+<div class="product-card-img"><img src="images/sata-ssd-g1.webp" alt=""></div>
+<div class="product-card-body">
+<p class="product-card-name">PUSKILL SATA III 2.5" SSD 128GB鈥?TB</p>
+<p class="product-card-price">楼99 鈥?楼699</p>
+<p class="product-card-moq" data-en="NEW 路 SATA III 路 520/500MB/s 路 120GB鈥?TB" data-zh="鏂板搧 路 SATA III 路 520/500MB/s 路 120GB鈥?TB" data-ja="鏂拌＝鍝?路 SATA III 路 520/500MB/s" data-ko="鞁犾牅頀?路 SATA III 路 520/500MB/s" data-es="NUEVO 路 SATA III 路 520/500MB/s" data-ru="袧袨袙袠袧袣袗 路 SATA III 路 520/500MB/s" data-pt="NOVO 路 SATA III 路 520/500MB/s" data-fr="NOUVEAU 路 SATA III 路 520/500MB/s" data-de="NEU 路 SATA III 路 520/500MB/s" data-ar="噩丿賷丿 路 SATA III 路 520/500MB/s">NEW 路 SATA III 路 520/500MB/s 路 120GB鈥?TB</p>
+</div></a>
+</article>
+<!-- DDR4 White RGB New -->
+<article class="product-card" data-cat="memory" data-price="999">
+<a href="product.html?id=ddr4-white-rgb" style="display:block;color:inherit;text-decoration:none">
+<div class="product-card-img"><img src="images/ddr4-white-rgb-1.webp" alt=""></div>
+<div class="product-card-body">
+<p class="product-card-name">DDR4 White RGB</p>
+<p class="product-card-price">楼150 鈥?楼999</p>
+<p class="product-card-moq" data-en="NEW 路 DDR4 White RGB" data-zh="鏂板搧 路 DDR4 White RGB" data-ja="鏂拌＝鍝?路 DDR4 White RGB" data-ko="鞁犾牅頀?路 DDR4 White RGB" data-es="NUEVO 路 DDR4 White RGB" data-ru="袧袨袙袠袧袣袗 路 DDR4 White RGB" data-pt="NOVO 路 DDR4 White RGB" data-fr="NOUVEAU 路 DDR4 White RGB" data-de="NEU 路 DDR4 White RGB" data-ar="噩丿賷丿 路 DDR4 White RGB">NEW 路 DDR4 White RGB</p>
+</div></a>
+</article>
+
+<!-- NVMe 1TB -->
+<article class="product-card" data-cat="ssd nvme" data-price="1029">
+<a href="product.html?id=nvme-1t" style="display:block;color:inherit;text-decoration:none">
+<div class="product-card-img"><img src="images/0f2e4c827292cdfa606502e579f74c51.webp" alt=""></div>
+<div class="product-card-body">
+<p class="product-card-name">SINOX NVMe 1TB PCIe 4.0 SSD</p>
+<p class="product-card-price">楼1,029</p>
+<p class="product-card-moq" data-en="MOQ: 1 Piece 路 342 viewed" data-zh="璧疯閲? 1 浠?路 342 娆℃祻瑙?>MOQ: 1 Piece 路 342 viewed</p>
+</div></a>
+</article>
+
+<!-- NVMe 2TB -->
+<article class="product-card" data-cat="ssd nvme" data-price="2169">
+<a href="product.html?id=nvme-2t" style="display:block;color:inherit;text-decoration:none">
+<div class="product-card-img"><img src="images/e5ce03a735c2944fc48369d678c0c215.webp" alt=""></div>
+<div class="product-card-body">
+<p class="product-card-name">SINOX NVMe 2TB PCIe 4.0 SSD</p>
+<p class="product-card-price">楼2,169</p>
+<p class="product-card-moq" data-en="MOQ: 1 Piece 路 178 viewed" data-zh="璧疯閲? 1 浠?路 178 娆℃祻瑙?>MOQ: 1 Piece 路 178 viewed</p>
+</div></a>
+</article>
+
+<!-- NVMe 4TB -->
+<article class="product-card" data-cat="ssd nvme" data-price="3429">
+<a href="product.html?id=nvme-4t" style="display:block;color:inherit;text-decoration:none">
+<div class="product-card-img"><img src="images/nvme-4t-v1.webp" alt=""></div>
+<div class="product-card-body">
+<p class="product-card-name">SINOX NVMe 4TB PCIe 4.0 SSD</p>
+<p class="product-card-price">楼3,429 <span class="product-card-flag" data-en="Out of Stock" data-zh="缂鸿揣">Out of Stock</span></p>
+<p class="product-card-moq" data-en="MOQ: 1 Piece 路 412 viewed" data-zh="璧疯閲? 1 浠?路 412 娆℃祻瑙?>MOQ: 1 Piece 路 412 viewed</p>
+</div></a>
+</article>
+
+<!-- SATA 1TB -->
+<article class="product-card" data-cat="ssd sata" data-price="889">
+<a href="product.html?id=sata-1t" style="display:block;color:inherit;text-decoration:none">
+<div class="product-card-img"><img src="images/1afae01d5cf53aa23deb7264be8131fa.webp" alt=""></div>
+<div class="product-card-body">
+<p class="product-card-name">SINOX SATA 2.5" SSD 1TB</p>
+<p class="product-card-price">楼889</p>
+<p class="product-card-moq" data-en="MOQ: 1 Piece 路 134 viewed" data-zh="璧疯閲? 1 浠?路 134 娆℃祻瑙?>MOQ: 1 Piece 路 134 viewed</p>
+</div></a>
+</article>
+
+<!-- SATA 2TB -->
+<article class="product-card" data-cat="ssd sata" data-price="1899">
+<a href="product.html?id=sata-2t" style="display:block;color:inherit;text-decoration:none">
+<div class="product-card-img"><img src="images/f92c27d9f527534160a6da7b6134abe8.webp" alt=""></div>
+<div class="product-card-body">
+<p class="product-card-name">SINOX SATA 2.5" SSD 2TB</p>
+<p class="product-card-price">楼1,899</p>
+<p class="product-card-moq" data-en="MOQ: 1 Piece 路 96 viewed" data-zh="璧疯閲? 1 浠?路 96 娆℃祻瑙?>MOQ: 1 Piece 路 96 viewed</p>
+</div></a>
+</article>
+
+</div>
+</div>
+
+<!-- Chaty Float -->
+<div class="chaty-float">
+<div class="chaty-sub" id="chatySub">
+<a href="javascript:void(0)" class="chaty-btn chaty-wa" onclick="window.open('https://wa.me/8618221761750','_blank')" data-en-title="WhatsApp" data-zh-title="WhatsApp"><span class="chaty-tip" data-en="WhatsApp" data-zh="WhatsApp">WhatsApp</span>馃挰</a>
+<a href="javascript:void(0)" class="chaty-btn chaty-email" onclick="window.location.href='mailto:18221717650@163.com'" data-en-title="Email" data-zh-title="閭欢"><span class="chaty-tip" data-en="Email" data-zh="閭欢">Email</span>鉁?/a>
+<a href="javascript:void(0)" class="chaty-btn chaty-phone" onclick="window.location.href='tel:+86 18221717650'" data-en-title="Phone" data-zh-title="鐢佃瘽"><span class="chaty-tip" data-en="Phone" data-zh="鐢佃瘽">Phone</span>馃摓</a>
+</div>
+<button class="chaty-main" id="chatyMain" title="Chat with us">馃挰</button>
+</div>
+
+<!-- Footer -->
+<footer>
+<div class="footer-main">
+<div class="footer-col">
+<a href="index.html" class="logo" style="color:#c5a028">SIN<span>OX</span></a>
+<p style="margin-top:12px" data-en="Professional manufacturer of memory modules and SSDs. DDR4/DDR5 RAM and NVMe/SATA SSDs for desktop, laptop, and server." data-zh="涓撲笟鍐呭瓨妯＄粍涓庡浐鎬佺‖鐩樺埗閫犲晢銆侱DR4/DDR5 鍐呭瓨鍜?NVMe/SATA 鍥烘�佺‖鐩橈紝閫傜敤浜庡彴寮忔満銆佺瑪璁版湰鍜屾湇鍔″櫒銆?>Professional manufacturer of memory modules and SSDs. DDR4/DDR5 RAM and NVMe/SATA SSDs for desktop, laptop, and server.</p>
+</div>
+<div class="footer-col">
+<h4 data-en="Quick Links" data-zh="蹇�熼摼鎺?>Quick Links</h4>
+<ul>
+<li><a href="index.html" data-en="Home" data-zh="棣栭〉">Home</a></li>
+<li><a href="products.html" data-en="Products" data-zh="浜у搧">Products</a></li>
+<li><a href="about.html" data-en="About us" data-zh="鍏充簬鎴戜滑">About us</a></li>
+<li><a href="news.html" data-en="News" data-zh="鏂伴椈">News</a></li>
+<li><a href="video.html" data-en="Video" data-zh="瑙嗛">Video</a></li>
+<li><a href="contact.html" data-en="Contact us" data-zh="鑱旂郴鎴戜滑">Contact us</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4 data-en="Contacts" data-zh="鑱旂郴鏂瑰紡">Contacts</h4>
+<ul>
+<li><a href="mailto:18221717650@163.com">18221717650@163.com</a></li>
+<li><a href="tel:+86 18221717650">+86 18221717650</a></li>
+<li><a href="https://wa.me/8618221761750">WhatsApp</a></li>
+<li data-en="Shenzhen, Guangdong, China" data-zh="涓浗骞夸笢鐪佹繁鍦冲競">Shenzhen, Guangdong, China</li>
+</ul>
+</div>
+<div class="footer-col">
+<h4 data-en="Products" data-zh="浜у搧">Products</h4>
+<ul>
+<li><a href="product.html?id=ddr4-16g">DDR4 Desktop RAM</a></li>
+<li><a href="product.html?id=ddr5-32g">DDR5 Desktop RAM</a></li>
+<li><a href="product.html?id=nvme-1t">NVMe PCIe 4.0 SSD</a></li>
+<li><a href="product.html?id=sata-1t">SATA 2.5" SSD</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<!-- Social Media SVG Icons -->
+<div class="footer-social-svg">
+<a href="https://www.facebook.com" target="_blank" title="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12S0 5.446 0 12.073c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+<a href="https://www.x.com" target="_blank" title="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+<a href="https://www.instagram.com" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+<a href="https://www.youtube.com" target="_blank" title="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+<a href="https://www.tiktok.com" target="_blank" title="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+<a href="https://www.linkedin.com" target="_blank" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+</div>
+<a href="#" data-en="Privacy Policy" data-zh="闅愮鏀跨瓥">Privacy Policy</a>|<a href="contact.html" data-en="Contact" data-zh="鑱旂郴">Contact</a>
+<p style="margin-top:8px" data-en="Copyright &copy; 2026 SINOX Technology Co., Ltd. All rights reserved." data-zh="Copyright &copy; 2026 SINOX Technology Co., Ltd. 淇濈暀鎵�鏈夋潈鍒┿�?>Copyright &copy; 2026 SINOX Technology Co., Ltd. All rights reserved.</p>
+</div>
+</footer>
+
+<script>
+// ========== Product Filter + Sort + Pagination ==========
+(function(){
+  var grid = document.getElementById('productGrid');
+  var cards = Array.from(grid.querySelectorAll('.product-card'));
+  var currentFilter = 'all';
+  var currentSort = 'default';
+  var currentPageSize = 12;
+  var currentPage = 1;
+
+  function parsePrice(card) {
+    return parseInt(card.getAttribute('data-price')) || 0;
+  }
+
+  function getFilteredCards() {
+    return cards.filter(function(c) {
+      if (currentFilter === 'all') return true;
+      var cats = (c.getAttribute('data-cat') || '').split(' ');
+      return cats.indexOf(currentFilter) !== -1;
+    });
+  }
+
+  function getSortedCards(filtered) {
+    var arr = filtered.slice();
+    if (currentSort === 'price-asc') {
+      arr.sort(function(a, b) { return parsePrice(a) - parsePrice(b); });
+    } else if (currentSort === 'price-desc') {
+      arr.sort(function(a, b) { return parsePrice(b) - parsePrice(a); });
+    }
+    return arr;
+  }
+
+  function render() {
+    var filtered = getFilteredCards();
+    var sorted = getSortedCards(filtered);
+    var total = sorted.length;
+    var pageSize = currentPageSize === 'all' ? total : parseInt(currentPageSize);
+    var totalPages = Math.ceil(total / pageSize);
+    if (currentPage > totalPages) currentPage = totalPages || 1;
+
+    var start = (currentPage - 1) * pageSize;
+    var end = Math.min(start + pageSize, total);
+    var pageItems = sorted.slice(start, end);
+
+    cards.forEach(function(c) { c.classList.add('hidden'); });
+    pageItems.forEach(function(c) { c.classList.remove('hidden'); });
+  }
+
+  // Filter buttons
+  document.querySelectorAll('#filterBtns .cat-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#filterBtns .cat-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      currentFilter = btn.getAttribute('data-f');
+      currentPage = 1;
+      render();
+    });
+  });
+
+  // Sort select
+  document.getElementById('sortSelect').addEventListener('change', function() {
+    currentSort = this.value;
+    currentPage = 1;
+    render();
+  });
+
+  // Page size select
+  document.getElementById('pageSizeSelect').addEventListener('change', function() {
+    currentPageSize = this.value === 'all' ? 'all' : parseInt(this.value);
+    currentPage = 1;
+    render();
+  });
+
+  // Initial render
+  render();
+})();
+
+// ========== Language Switcher ==========
+(function(){
+const LANG_KEY='sinox_lang';
+const i18nElements=document.querySelectorAll('[data-en][data-zh]');
+const gtLangMap={zh:'zh-CN',ja:'ja',ko:'ko',es:'es',ru:'ru',pt:'pt',fr:'fr',de:'de',ar:'ar'};
+
+function applyManual(lang){
+  i18nElements.forEach(el=>{el.textContent=el.getAttribute('data-'+lang);});
+  document.querySelectorAll('[data-en-title]').forEach(el=>{el.title=el.getAttribute('data-'+lang+'-title');});
+  document.documentElement.lang=lang==='zh'?'zh-CN':'en-US';
+}
+
+function updateBtns(lang){
+  document.querySelectorAll('.lang-btn').forEach(b=>{b.classList.toggle('active',b.dataset.lang===lang);});
+}
+
+function triggerGT(lang){
+  var tries=0;
+  var iv=setInterval(function(){
+    var frame=document.querySelector('.goog-te-menu-frame');
+    if(frame){
+      try{
+        var doc=frame.contentDocument||frame.contentWindow.document;
+        var combo=doc.querySelector('.goog-te-combo');
+        if(combo){
+          combo.value=gtLangMap[lang];
+          combo.dispatchEvent(new Event('change'));
+          clearInterval(iv);return;
+        }
+      }catch(e){}
+    }
+    var combo2=document.querySelector('.goog-te-combo');
+    if(combo2){
+      combo2.value=gtLangMap[lang];
+      combo2.dispatchEvent(new Event('change'));
+      clearInterval(iv);return;
+    }
+    tries++;
+    if(tries>30){clearInterval(iv);}
+  },200);
+}
+
+var currentLang=localStorage.getItem(LANG_KEY)||'en';
+if(currentLang==='en'||currentLang==='zh'){
+  applyManual(currentLang);
+}
+updateBtns(currentLang||'en');
+
+document.querySelectorAll('.lang-btn').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    var lang=this.dataset.lang;
+    localStorage.setItem(LANG_KEY,lang);
+    updateBtns(lang);
+    if(lang==='en'||lang==='zh'){
+      applyManual(lang);
+    }else{
+      triggerGT(lang);
+    }
+  });
+});
+})();
+
+// ========== Chaty Float ==========
+(function(){
+const main=document.getElementById('chatyMain');
+const sub=document.getElementById('chatySub');
+let isOpen=false;
+main.addEventListener('click',function(){
+isOpen=!isOpen;
+if(isOpen){main.classList.add('open');sub.classList.add('show');}
+else{main.classList.remove('open');sub.classList.remove('show');}
+});
+document.addEventListener('click',function(e){
+if(isOpen && !e.target.closest('.chaty-float')){
+isOpen=false;
+main.classList.remove('open');
+sub.classList.remove('show');
+}
+});
+})();
+
+// ========== Sort select i18n sync ==========
+(function(){
+var sortOpts = document.querySelectorAll('#sortSelect option');
+var pageSizeOpts = document.querySelectorAll('#pageSizeSelect option');
+function updateSelectTexts(lang) {
+  sortOpts.forEach(function(opt) {
+    opt.textContent = opt.getAttribute('data-' + lang) || opt.textContent;
+  });
+  pageSizeOpts.forEach(function(opt) {
+    opt.textContent = opt.getAttribute('data-' + lang) || opt.textContent;
+  });
+}
+var origSetLang = window.setLang;
+document.querySelectorAll('.lang-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    setTimeout(function() { updateSelectTexts(btn.dataset.lang); }, 10);
+  });
+});
+})();
+</script>
+
+<!-- Google Translate -->
+<div id="google_translate_element" style="position:fixed;bottom:80px;right:90px;z-index:9998"></div>
+<script>
+function googleTranslateElementInit(){
+  new google.translate.TranslateElement({
+    pageLanguage:'en',
+    includedLanguages:'en,zh-CN,ja,ko,es,ru,pt,fr,de,ar',
+    layout:google.translate.TranslateElement.InlineLayout.SIMPLE
+  },'google_translate_element');
+}
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
