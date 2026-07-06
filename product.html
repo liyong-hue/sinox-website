@@ -785,14 +785,17 @@ thumbs.forEach(function(t,i){t.classList.toggle('active',i===galleryIdx);});
 
 // ========== Tab Switching ==========
 (function(){
+try{
 document.querySelectorAll('.tab-btn').forEach(function(btn){
 btn.addEventListener('click',function(){
 document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
 this.classList.add('active');
 document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
-document.getElementById('panel-'+this.dataset.tab).classList.add('active');
+var panel=document.getElementById('panel-'+this.dataset.tab);
+if(panel)panel.classList.add('active');
 });
 });
+}catch(e){}
 })();
 
 // ========== Send Inquiry ==========
@@ -820,27 +823,33 @@ var prodNameEn=p.name;
 var prodNameZh=p.nameZh||p.name;
 document.title=prodNameEn+' - SINOX';
 var bn=document.getElementById('breadcrumbName');
+if(bn){
 bn.textContent=lang==='zh'?prodNameZh:prodNameEn;
 bn.setAttribute('data-en',prodNameEn);
 bn.setAttribute('data-zh',prodNameZh);
+}
 var pn=document.getElementById('prodName');
+if(pn){
 pn.textContent=lang==='zh'?prodNameZh:prodNameEn;
 pn.setAttribute('data-en',prodNameEn);
 pn.setAttribute('data-zh',prodNameZh);
+}
 
 // Category
 var catEl=document.querySelector('.product-cat');
-catEl.textContent=p.cat||'DDR4 Memory';
+if(catEl)catEl.textContent=p.cat||'DDR4 Memory';
 
 // Price
-document.getElementById('prodPrice').textContent=p.priceRange||('\u00a5'+p.price.toLocaleString());
+var prodPrice=document.getElementById('prodPrice');
+if(prodPrice)prodPrice.textContent=p.priceRange||('\u00a5'+p.price.toLocaleString());
 
 // Gallery
 galleryImages=p.images||[];
 galleryIdx=0;
-document.getElementById('mainImg').src=galleryImages.length>0?'images/'+galleryImages[0]:'';
+var mainImg=document.getElementById('mainImg');
+if(mainImg)mainImg.src=galleryImages.length>0?'images/'+galleryImages[0]:'';
 var strip=document.getElementById('thumbStrip');
-strip.innerHTML='';
+if(strip){strip.innerHTML='';
 galleryImages.forEach(function(img,i){
 var t=document.createElement('div');
 t.className='gallery-thumb'+(i===0?' active':'');
@@ -848,9 +857,15 @@ t.innerHTML='<img src="images/'+img+'" alt="" loading="lazy">';
 t.onclick=function(){setImage(i);};
 strip.appendChild(t);
 });
+}
 
 // Description (with data-en/data-zh)
 var descOverview=document.getElementById('descOverview');
+if(!descOverview){
+var panelDesc=document.getElementById('panel-desc');
+if(panelDesc){descOverview=document.createElement('div');descOverview.id='descOverview';descOverview.className='desc-overview';panelDesc.insertBefore(descOverview,panelDesc.firstChild);}
+}
+if(descOverview){
 var descEn='',descZh='';
 if(p.desc){
 descEn=typeof p.desc==='object'?(p.desc.en||''):p.desc;
@@ -862,9 +877,15 @@ descZh=p.sub&&typeof p.sub==='object'?(p.sub.zh||descEn).replace(/&middot;/g,'\u
 descOverview.textContent=lang==='zh'?descZh:descEn;
 descOverview.setAttribute('data-en',descEn);
 descOverview.setAttribute('data-zh',descZh);
+}
 
 // Features (with data-en/data-zh)
 var fc=document.getElementById('featureCards');
+if(!fc){
+var panelDesc2=document.getElementById('panel-desc');
+if(panelDesc2){fc=document.createElement('div');fc.id='featureCards';fc.className='feature-cards';panelDesc2.appendChild(fc);}
+}
+if(fc){
 fc.innerHTML='';
 if(p.features){
 p.features.forEach(function(f,i){
@@ -880,6 +901,7 @@ card.innerHTML='<div class="feature-text"><h3 data-en="'+titleEn.replace(/"/g,'&
 fc.appendChild(card);
 });
 }
+}
 
 // Bottom text + images (with data-en/data-zh)
 var bottomOld=document.getElementById('bottomSection');
@@ -892,7 +914,6 @@ var bt=document.createElement('div');
 bt.className='bottom-text';
 var btEn=typeof p.bottomText==='object'?(p.bottomText.en||''):p.bottomText;
 var btZh=typeof p.bottomText==='object'?(p.bottomText.zh||btEn):btEn;
-// Use innerHTML for bottomText since it contains HTML tags
 bt.innerHTML=lang==='zh'?btZh:btEn;
 bt.setAttribute('data-en',btEn);
 bt.setAttribute('data-zh',btZh);
@@ -910,11 +931,17 @@ bi.appendChild(imgEl);
 });
 bw.appendChild(bi);
 }
-fc.parentNode.appendChild(bw);
+if(fc)fc.parentNode.appendChild(bw);
+else{
+var panelDesc3=document.getElementById('panel-desc');
+if(panelDesc3)panelDesc3.appendChild(bw);
+}
 }
 
 // Preview specs (first 6)
 var ps=document.getElementById('previewSpecs');
+if(!ps&&document.querySelector('.preview-specs'))ps=document.querySelector('.preview-specs');
+if(ps){
 ps.innerHTML='';
 var previewSpecs=p.specs||[];
 var count=Math.min(previewSpecs.length,6);
@@ -924,18 +951,26 @@ item.className='preview-spec-item';
 item.innerHTML='<strong>'+previewSpecs[i][0]+':</strong> '+previewSpecs[i][1];
 ps.appendChild(item);
 }
+}
 
 // Full specs table (with data-en/data-zh on value cells)
 var st=document.getElementById('specsTable');
+if(!st){
+var psPanel=document.getElementById('panel-specs');
+if(psPanel){st=document.createElement('table');st.id='specsTable';st.className='specs-table';psPanel.appendChild(st);}
+}
+if(st){
 st.innerHTML='';
 (p.specs||[]).forEach(function(kv){
 var tr=document.createElement('tr');
 tr.innerHTML='<td>'+kv[0]+'</td><td data-en="'+kv[1].replace(/"/g,'&quot;')+'" data-zh="'+kv[1].replace(/"/g,'&quot;')+'">'+kv[1]+'</td>';
 st.appendChild(tr);
 });
+}
 
 // Related products (exclude current)
 var rg=document.getElementById('relatedGrid');
+if(rg){
 rg.innerHTML='';
 var keys=Object.keys(products);
 var shown=0;
@@ -960,6 +995,7 @@ card.innerHTML='<a href="product.html?id='+k+'" style="display:block;color:inher
 rg.appendChild(card);
 shown++;
 });
+}
 }
 
 renderProduct();
